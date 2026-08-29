@@ -1,170 +1,175 @@
-/*body {
-    font-style: Helvetica;
-    background-color: hsl(0, 0%, 90%);
-}
-
-form {
-    background-color: rgb(255, 255, 255);
+/*#container {
     text-align: center;
-    max-width: 350px;
-    margin: auto;
-    padding: 25px;
-    border-radius: 20px;
-}
-
-#textBox {
-    text-align: center;
-    font-size: 1.5em;
-    padding: 10px;
-    margin-bottom: 10px;
-}
-
-label {
-    font-size: 1.5em;
+    font-size: 2rem;
     font-weight: bold;
 }
-
 button {
-    margin-top: 20px;
-    padding: 10px;
-    font-size: 1.5em;
-    background-color: hsl(0, 100%, 43%);
-    color: rgb(255, 255, 255);
-    border-radius: 10px;
+    font-size: 1.5rem;
     padding: 10px 15px;
+    border-radius: 10px;
+    border-color: aliceblue;
     border: none;
-    cursor: pointer;
-}
-button:hover{
-    background-color: hsl(0, 100%, 37%);
-}
-
-#result {
-    font-size: 1.75em;
+    background-color: hsl(240, 100%, 75%);
+    color: white;
     font-weight: bold;
+    cursor: pointer;
+    transition: text-shadow 0.1s ease-in-out;
 }
-    */
+button:hover {
+  text-shadow: 0 0 8px hsla(0, 0%, 100%, 1);
+  background-color: hsl(240, 100%, 80%);
+}
+button:active {
+      background-color: hsl(240, 100%, 85%);
+}
+input {
+    width: 150px;
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-align: center;
+    border-radius: 10px;
+}
+#diceResult {
+    margin: 25px;
+}
+#diceImages img {
+    width: 150px;     
+}
+*/
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Центрирование и глубокий неоновый фон */
+/* Центрирование и глубокий тёмно-фиолетовый фон */
 body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: radial-gradient(circle at 50% 50%, #111827 0%, #030712 100%);
-  color: #f9fafb;
+  background: radial-gradient(circle at 50% 50%, #1e1b4b 0%, #090d16 100%);
+  color: #ffffff;
 }
 
-/* Стеклянная Thermo-карточка */
-form {
-  background: rgba(255, 255, 255, 0.03);
+/* Главная стеклянная карточка-контейнер */
+#container {
+  background: rgba(255, 255, 255, 0.04);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 28px;
   padding: 40px;
-  max-width: 400px;
-  width: 100%;
+  max-width: 700px;
+  width: 90%;
   text-align: center;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
 }
 
-/* Заголовок с огоньком */
-h1, h2, form > :first-child {
-  font-size: 1.8rem;
-  font-weight: 800;
-  margin-bottom: 24px;
-  background: linear-gradient(135deg, #38bdf8 0%, #ff6b6b 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+/* Заголовок "Dice roller" */
+#container h1, #container > font, #container {
+  font-size: 2.2rem;
+  font-weight: 900;
+  margin-bottom: 20px;
 }
 
-/* Поле ввода температуры */
-#textBox {
-  width: 100%;
-  padding: 14px;
-  font-size: 1.8rem;
-  font-weight: 700;
+/* Стильное неоновое поле ввода числа кубиков */
+input {
+  width: 90px;
+  padding: 10px;
+  font-size: 1.5rem;
+  font-weight: 800;
   text-align: center;
   color: #ffffff;
   background: rgba(0, 0, 0, 0.4);
-  border: 2px solid rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(168, 85, 247, 0.4);
   border-radius: 14px;
-  margin-bottom: 24px;
+  margin: 0 12px;
   outline: none;
   transition: all 0.3s ease;
 }
 
-#textBox:focus {
-  border-color: #38bdf8;
-  box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+input:focus {
+  border-color: #c084fc;
+  box-shadow: 0 0 15px rgba(192, 132, 252, 0.4);
 }
 
-/* Переключатели (Radio Buttons) */
-label {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin: 12px 0;
-  cursor: pointer;
-  color: #9ca3af;
-  transition: color 0.2s ease;
-}
-
-label:hover {
-  color: #ffffff;
-}
-
-/* Кастомный акцент для радио-кнопок */
-input[type="radio"] {
-  accent-color: #ff4757;
-  width: 18px;
-  height: 18px;
-  cursor: pointer;
-}
-
-/* Кнопка Submit (Огненный градиент) */
+/* Сочная кнопка "Roll dice" */
 button {
-  width: 100%;
-  margin-top: 20px;
-  padding: 14px 24px;
-  font-size: 1.2rem;
+  padding: 12px 32px;
+  font-size: 1.3rem;
   font-weight: 800;
-  letter-spacing: 1px;
   color: #ffffff;
-  background: linear-gradient(135deg, #ff4757 0%, #ff6b81 100%);
+  background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
   border: none;
   border-radius: 14px;
   cursor: pointer;
-  box-shadow: 0 10px 20px rgba(255, 71, 87, 0.3);
+  box-shadow: 0 8px 20px rgba(168, 85, 247, 0.4);
   transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 button:hover {
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 15px 30px rgba(255, 71, 87, 0.5);
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 12px 25px rgba(168, 85, 247, 0.6);
+  background: linear-gradient(135deg, #b666ff 0%, #8b46ff 100%);
 }
 
 button:active {
-  transform: translateY(1px) scale(0.98);
+  transform: translateY(1px) scale(0.97);
 }
 
-/* Результат — Крупно и сочно */
-#result {
-  display: block;
-  margin-top: 24px;
-  font-size: 2.5rem;
-  font-weight: 900;
-  color: #38bdf8;
-  text-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
-  transition: all 0.3s ease;
+/* Текстовый результат (dice: 6, 4, 4...) */
+#diceResult {
+  margin: 24px 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #c084fc;
+  letter-spacing: 1px;
+}
+
+/* Контейнер для картинок — красивый Flex-ряд с переносом */
+#diceImages {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+/* Стилизация самих картинок костей */
+#diceImages img {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  border-radius: 18px;
+  background: #ffffff;
+  padding: 6px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4),
+              0 0 15px rgba(255, 255, 255, 0.2);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Эффект парения при наведении на конкретную кость */
+#diceImages img:hover {
+  transform: translateY(-6px) scale(1.08) rotate(5deg);
+}
+
+/* АНИМАЦИЯ БРОСКА: кубики подпрыгивают и крутятся при нажатии на Roll */
+body:has(button:active) #diceImages img {
+  animation: rollAnimation 0.35s ease-in-out;
+}
+
+@keyframes rollAnimation {
+  0% {
+    transform: scale(0.7) rotate(0deg);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.15) rotate(180deg);
+  }
+  100% {
+    transform: scale(1) rotate(360deg);
+    opacity: 1;
+  }
 }
